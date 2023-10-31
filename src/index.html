@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Control General</title>
+
+
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Menú de la izquierda -->
+        <div class="menu" style="float: left; width: 20%;">
+            <h3>Menú</h3>
+            <nav class="list-menu">
+                <a class="linkActive" href="/index.html">Control General</a>
+                <a class="linkActive" href="./page2.html">Customer</a>
+                <a class="linkActive" href="./page3.html">Ventas</a>
+            </nav>
+        </div>
+        <!-- Ventana de la derecha -->
+        <div class="ventana" style="float: right; width: 75%;">
+            <h1>Control General</h1>
+            <!-- Create Item-->
+            <div class="create-container">
+                <form>
+                    <div class="form-grid">
+                        <div>
+                            <label>BarCode</label>
+                            <input placeholder="barcode" id="barcode" name="barcode" class="input-form" required />
+                        </div>
+                        <div>
+                            <label>Name</label>
+                            <input placeholder="name" id="name" name="name" class="input-form" required type="text"
+                                title="Ingrese nombre del producto" />
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div>
+                            <label>Stock</label>
+                            <input placeholder="stock" type="number" id="stock" name="stock" class="input-form"
+                                required />
+                        </div>
+                        <div>
+                            <label>Price</label>
+                            <input placeholder="price" id="price" type="number" name="price" class="input-form"
+                                required />
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div>
+                            <label>Category:</label>
+                            <input type="search" list="categories" name="categories" />
+                            <datalist id="categories">
+                                <option value="Electronica"></option>
+                                <option value="Ropa"></option>
+                                <option value="Alimentos"></option>
+                                <option value="Otros"></option>
+                            </datalist>
+                        </div>
+                        <div>
+                            <button id="test">Save</button>
+                        </div>
+                    </div>
+                </form>
+                <button class="scanner-button">
+                    <h1>With Scan</h1>
+                </button>
+            </div>
+            <!-- Reset, fixPrice, discount-->
+            <div class="tools">
+                <button id="charge">Reload items</button>
+                <div>
+                    <input type="number" id="inflacion" class="input-form" />
+                    <button id="inflacionSubmit">Change %</button>
+                </div>
+                <div>
+                    <input type="number" id="discount" class="input-form" />
+                    <button id="inflacionSubmit">% OFF</button>
+                </div>
+            </div>
+            <!-- Filter table -->
+            <div class="filter">
+                <div class="filter-search">
+                    <label>Search:</label>
+                    <input type="search" id="filterInput">
+                </div>
+                <div class="filter-search">
+                    <label>Category:</label>
+                    <input type="search" list="categories" />
+                    <datalist id="categories">
+                        <option value="Electronica"></option>
+                        <option value="Ropa"></option>
+                        <option value="Alimentos"></option>
+                        <option value="Otros"></option>
+                    </datalist>
+                </div>
+            </div>
+            <!-- Table -->
+            <table>
+                <thead>
+                    <th>ID</th>
+                    <th>CodeBar</th>
+                    <th>Product</th>
+                    <th>Stock</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>edit</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="idDb">1</td>
+                        <td>Reload Items to</td>
+                        <td>Show</td>
+                        <td>null</td>
+                        <td>null</td>
+                        <td>null</td>
+                        <td class="icons-svg"><img src="./assets/delete.svg" /><img src="./assets/config.svg" /></td>
+                    </tr>
+                </tbody>
+                <!-- Agrega más filas de productos aquí -->
+            </table>
+            <!-- Pagination -->
+        </div>
+    </div>
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/showItems.js"></script>
+    <script src="./scripts/menuscript.js"></script>
+</body>
+
+</html>

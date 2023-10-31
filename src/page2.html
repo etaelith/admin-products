@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/page2.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer</title>
+</head>
+
+<body>
+    <!-- Menú de la izquierda -->
+    <div class="menu" style="float: left; width: 20%;">
+        <h3>Menú</h3>
+        <nav class="list-menu">
+            <a class="linkActive" href="../index.html">Control General</a>
+            <a class="linkActive" href="./page2.html">Customer</a>
+            <a class="linkActive" href="./page3.html">Ventas</a>
+        </nav>
+    </div>
+    <!-- Ventana de la derecha -->
+    <div class="ventana" style="float: right; width: 75%;">
+        <h1>Sell</h1>
+
+        <div class="create-container">
+            <form class="form-sell">
+                <div>
+                    <Label>Product id:</Label>
+                    <input type="text" id="productId" class="input-form" required />
+                </div>
+                <div>
+                    <Label>Cantidad:</Label>
+                    <input type="number" id="amount" class="input-form" required />
+                </div>
+                <div class="buttons-form">
+                    <button id="agree" type="button">Agree</button>
+                </div>
+            </form>
+            <button class="scanner-button">
+                <h1>With Scan</h1>
+            </button>
+        </div>
+        <!-- Table for Sell -->
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>ID Product</th>
+                <th>Product Name</th>
+                <th>Amount</th>
+                <th>Price ARS</th>
+                <th>Price USD</th>
+                <th>Total ARS</th>
+            </thead>
+            <tbody>
+                <tr class="row-item">
+                    <td>1</td>
+                    <td>23</td>
+                    <td>Product 1</td>
+                    <td>5</td>
+                    <td>$100.00</td>
+                    <td>$10.00</td>
+                    <td>$500.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>2</td>
+                    <td>332</td>
+                    <td>Product 2</td>
+                    <td>3</td>
+                    <td>$15.00</td>
+                    <td>$1.50</td>
+                    <td>$45.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>3</td>
+                    <td>21</td>
+                    <td>Product 3</td>
+                    <td>2</td>
+                    <td>$50.00</td>
+                    <td>$5.00</td>
+                    <td>$100.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>4</td>
+                    <td>7234</td>
+                    <td>Product 4</td>
+                    <td>4</td>
+                    <td>$25.00</td>
+                    <td>$2.50</td>
+                    <td>$100.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>5</td>
+                    <td>9120</td>
+                    <td>Product 5</td>
+                    <td>1</td>
+                    <td>$75.00</td>
+                    <td>$7.50</td>
+                    <td>$75.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>6</td>
+                    <td>213</td>
+                    <td>Product 6</td>
+                    <td>6</td>
+                    <td>$20.00</td>
+                    <td>$2.00</td>
+                    <td>$120.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>7</td>
+                    <td>345</td>
+                    <td>Product 7</td>
+                    <td>8</td>
+                    <td>$30.00</td>
+                    <td>$3.00</td>
+                    <td>$240.00</td>
+                </tr>
+                <!-- Agrega más filas de datos aquí -->
+            </tbody>
+        </table>
+        <!-- Sell items  -->
+        <div class="customer-sell">
+            <div class="customer-final">
+                <div class="customer-container">
+
+                    <label for="customer">Boleta tipo:</label>
+                    <select name="customer" id="customer">
+                        <option value="A">Tipo A</option>
+                        <option value="B">Tipo B</option>
+                        <option value="C">Tipo C</option>
+                    </select>
+                </div>
+                <div class="customer-total">
+                    <h2>Total:</h2>
+                    <h2 id="totalAmount"></h2>
+                </div>
+            </div>
+            <button id="calculate" class="customer-button">Calculate</button>
+            <button id="sell" class="customer-button">Sell</button>
+        </div>
+    </div>
+    <script src="./scripts/menuscript.js"></script>
+    <script src="./scripts/scriptboleta.js"></script>
+</body>
+
+</html>

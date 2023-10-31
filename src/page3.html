@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/page3.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Ventas</title>
+</head>
+
+<body>
+    <!-- Menú de la izquierda -->
+    <div class="menu" style="float: left; width: 20%;">
+        <h3>Menú</h3>
+        <nav class="list-menu">
+            <a class="linkActive" href="index.html">Control General</a>
+            <a class="linkActive" href="./page2.html">Customer</a>
+            <a class="linkActive" href="./page3.html">Ventas</a>
+        </nav>
+    </div>
+    <!-- Ventana de la derecha -->
+    <div class="ventana" style="float: right; width: 75%;">
+        <h1>Control de Ventas</h1>
+        <div class="stats">
+            <ul>
+                <li>
+                    <h3>Productos Vendidos</h3>
+                    <div>
+                        <h5>Amount:</h5>
+                        <h4>585</h4>
+                    </div>
+                </li>
+                <li>
+                    <h3>Total facturado:</h3>
+                    <div>
+                        <h5>Amount:</h5>
+                        <h4>$253356</h4>
+                    </div>
+                </li>
+                <li>
+                    <h3>Total facturado(usd):</h3>
+                    <div>
+                        <h5>Amount:</h5>
+                        <h4>$2356</h4>
+                    </div>
+                </li>
+                <li>
+                    <h3>Ventas Concretadas</h3>
+                    <div>
+                        <h5>Amount:</h5>
+                        <h4>356</h4>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+        <!-- Sales -->
+        <h2>Sales Products</h2>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>ID Product</th>
+                <th>Product Name</th>
+                <th>Amount</th>
+                <th>Price ARS</th>
+                <th>USD Value</th>
+                <th>Total ARS</th>
+            </thead>
+            <tbody>
+                <tr class="row-item">
+                    <td>1</td>
+                    <td>23</td>
+                    <td>Product 1</td>
+                    <td>5</td>
+                    <td>$100.00</td>
+                    <td>$10.00</td>
+                    <td>$500.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>2</td>
+                    <td>332</td>
+                    <td>Product 2</td>
+                    <td>3</td>
+                    <td>$15.00</td>
+                    <td>$1.50</td>
+                    <td>$45.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>3</td>
+                    <td>21</td>
+                    <td>Product 3</td>
+                    <td>2</td>
+                    <td>$50.00</td>
+                    <td>$5.00</td>
+                    <td>$100.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>4</td>
+                    <td>7234</td>
+                    <td>Product 4</td>
+                    <td>4</td>
+                    <td>$25.00</td>
+                    <td>$2.50</td>
+                    <td>$100.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>5</td>
+                    <td>9120</td>
+                    <td>Product 5</td>
+                    <td>1</td>
+                    <td>$75.00</td>
+                    <td>$7.50</td>
+                    <td>$75.00</td>
+                </tr>
+
+                <!-- Agrega más filas de datos aquí -->
+            </tbody>
+        </table>
+        <!-- invoicing -->
+        <h2>Invoicing</h2>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Category Type</th>
+                <th>Description</th>
+                <th>Price USD</th>
+                <th>Total ARS</th>
+            </thead>
+            <tbody>
+                <tr class="row-item">
+                    <td>1</td>
+                    <td>A</td>
+                    <td>Product 1</td>
+                    <td>$10.00</td>
+                    <td>$500.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>2</td>
+                    <td>B</td>
+                    <td>Product 2</td>
+                    <td>$1.50</td>
+                    <td>$45.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>3</td>
+                    <td>B</td>
+                    <td>Product 3</td>
+                    <td>$5.00</td>
+                    <td>$100.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>4</td>
+                    <td>A</td>
+                    <td>Product 4</td>
+                    <td>$2.50</td>
+                    <td>$100.00</td>
+                </tr>
+                <tr class="row-item">
+                    <td>5</td>
+                    <td>C</td>
+                    <td>Product 5</td>
+                    <td>$7.50</td>
+                    <td>$75.00</td>
+                </tr>
+
+                <!-- Agrega más filas de datos aquí -->
+            </tbody>
+        </table>
+    </div>
+    <script src="./scripts/menuscript.js"></script>
+</body>
+
+</html>

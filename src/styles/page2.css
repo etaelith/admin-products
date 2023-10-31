@@ -1,0 +1,49 @@
+.form-sell {
+    display: flex;
+    gap: 2em;
+}
+
+.form-sell>div {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.buttons-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+}
+
+/* Sell Items */
+.customer-sell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2em;
+    gap: 1em;
+}
+
+.customer-final {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+}
+
+.customer-container {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.customer-total {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.customer-button {
+    width: 150px;
+    height: 50px;
+}
