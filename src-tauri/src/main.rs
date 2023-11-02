@@ -5,12 +5,14 @@ mod db_config;
 mod item;
 mod table_billing;
 mod table_item;
+mod test;
+use rusqlite::Result;
+
+use crate::db_config::connect_database;
 use db_config::setup_database;
-
-use rusqlite::{Connection, Result};
-
 use table_billing::SaleTransaction;
 use table_item::{delete_item, get_items, save_item, update_prices};
+use test::{create_item_for_sell, create_or_get_buyer_id};
 
 /* Comandos TABLE items */
 #[tauri::command]
@@ -68,6 +70,28 @@ fn sell_completed() -> Result<(), String> {
     sale_transaction.commit();
     Ok(())
 }
+/* comandos test */
+
+#[tauri::command]
+fn command_uno(uno: String, category_type: &str) -> Result<(), String> {
+    println!("{uno}");
+    let conn = connect_database().map_err(|e| e.to_string())?;
+    create_or_get_buyer_id(conn, category_type);
+    Ok(())
+}
+
+#[tauri::command]
+fn command_dos(dos: String, codebar: i64, amount: i64, usd: i64) -> Result<(), String> {
+    let conn = connect_database().map_err(|e| e.to_string())?;
+    create_item_for_sell(conn, codebar, amount, usd);
+    Ok(())
+}
+
+#[tauri::command]
+fn command_tres(tres: String) {
+    println!("{}", tres);
+    let conn = connect_database().map_err(|e| e.to_string());
+}
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
@@ -77,7 +101,10 @@ fn main() {
             update_prices_db,
             create_bill,
             add_item_table,
-            sell_completed
+            sell_completed,
+            command_uno,
+            command_dos,
+            command_tres
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -23,8 +23,25 @@
     <!-- Ventana de la derecha -->
     <div class="ventana" style="float: right; width: 75%;">
         <h1>Sell</h1>
-
+        <div class="customer-container">
+            <label for="customer">Boleta tipo:</label>
+            <select name="customer" id="customer">
+                <option value="A">Tipo A</option>
+                <option value="B">Tipo B</option>
+                <option value="C">Tipo C</option>
+            </select>
+            <button id="calculate" class="customer-button">Calculate</button>
+            <div>
+                <h1>Test</h1>
+                <input id="input_uno" type="number" class="input-form" />
+                <button id="command_uno">Command 1</button>
+                <input id="input_dos" type="number" class="input-form" />
+                <button id="command_dos">Command 2</button>
+                <button id="command_tres">Command 3</button>
+            </div>
+        </div>
         <div class="create-container">
+
             <form class="form-sell">
                 <div>
                     <Label>Product id:</Label>
@@ -123,26 +140,18 @@
         <!-- Sell items  -->
         <div class="customer-sell">
             <div class="customer-final">
-                <div class="customer-container">
 
-                    <label for="customer">Boleta tipo:</label>
-                    <select name="customer" id="customer">
-                        <option value="A">Tipo A</option>
-                        <option value="B">Tipo B</option>
-                        <option value="C">Tipo C</option>
-                    </select>
-                </div>
                 <div class="customer-total">
                     <h2>Total:</h2>
                     <h2 id="totalAmount"></h2>
                 </div>
             </div>
-            <button id="calculate" class="customer-button">Calculate</button>
             <button id="sell" class="customer-button">Sell</button>
         </div>
     </div>
     <script src="./scripts/menuscript.js"></script>
     <script src="./scripts/scriptboleta.js"></script>
+    <script src="./scripts/test.js"></script>
 </body>
 
 </html>

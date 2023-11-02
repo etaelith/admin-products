@@ -10,6 +10,8 @@ pub struct SaleTransaction {
 static STATIC_BUYER_ID: Option<i64> = Some(1);
 /* Transaction */
 
+/* Ejecutar todo en una instancia a partir de distintos tiempos/loops
+Necesito 1 conn ,1 buyer_id , loop sale_items, commit  */
 impl SaleTransaction {
     pub fn new(conn: Connection) -> SaleTransaction {
         SaleTransaction {

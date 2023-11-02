@@ -30,8 +30,25 @@ pub fn setup_database() -> Result<Connection> {
             category_type TEXT, -- Cambiado a texto para una letra
             total INTEGER,
             total_usd INTEGER
+        );
+        CREATE TABLE IF NOT EXISTS presell (
+            id INTEGER PRIMARY KEY,
+            codebar INTEGER NOT NULL,
+            amount INTEGER NOT NULL,
+            price INTEGER NOT NULL,
+            usd_value INTEGER NOT NULL,
+            total INTEGER NOT NULL,
+            total_usd INTEGER NOT NULL,
+            buyer INTEGER NOT NULL,
+            FOREIGN KEY (codebar) REFERENCES items(codebar),
+            FOREIGN KEY (buyer) REFERENCES buyer (id)
         );",
     )?;
     conn.is_autocommit();
+    Ok(conn)
+}
+
+pub fn connect_database() -> Result<Connection> {
+    let conn = Connection::open("my_database.db")?;
     Ok(conn)
 }
