@@ -6,7 +6,7 @@ pub fn save_item(
     conn: &Connection,
     codebar: &str,
     name: &str,
-    stock: i32,
+    stock: i64,
     price: f64,
     category: &str,
 ) -> Result<()> {
@@ -34,7 +34,7 @@ pub fn update_prices(conn: &Connection, percent: f64) -> Result<(), rusqlite::Er
     for result in mapped_rows {
         let (id, new_price) = result?;
         conn.execute(
-            "UPDATE items SET price = ?1 WHERE id = ?2",
+            "UPDATE items SET price = ?1, updated_at = CURRENT_TIMESTAMP WHERE id = ?2",
             [new_price, id as f64],
         )?;
     }

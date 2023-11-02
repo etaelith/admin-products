@@ -8,19 +8,29 @@ const tableRows = document.querySelectorAll(".row-item")
 const buttonCalculate = document.getElementById("calculate")
 const total = document.getElementById("totalAmount")
 /*Check exist & stock */
-idProduct.addEventListener("input", function () {
+/* idProduct.addEventListener("input", function () {
     const trimmedValue = idProduct.value.trim();
     if (trimmedValue !== "") {
         console.log(trimmedValue)
     }
-})
+}) */
 
-/*  Agree item cart */
+/*  Agree item cart fn add_item_table(codebar: i64, amount: i64, usd: i64)*/
 buttonAgree.addEventListener("click", function () {
-    console.log(idProduct.value, Number(amountProduct.value))
+    console.log(Number(idProduct.value), Number(amountProduct.value))
+    try {
+
+        invoke("add_item_table", {
+            codebar: Number(idProduct.value),
+            amount: Number(amountProduct.value),
+            usd: 350
+        })
+    } catch (error) {
+        console.error("Error al llamar a add_item_table: ", error)
+    }
 })
 
-/* Calculate total */
+/* Calculate total / fn create_bill(category_type: &str) */
 
 let amountTotal;
 buttonCalculate.addEventListener("click", function () {
@@ -36,16 +46,12 @@ buttonCalculate.addEventListener("click", function () {
     })
 })
 
-/* Payload */
+/* Pagar/ commit sell_completed() */
 
 
 buttonSell.addEventListener('click', async function () {
     /* buttonCalculate.click();
     console.log("Billing Type: ", billingType.value, " ,Total Amount: ", amountTotal) */
-    const hasRecords = await invoke("check_buyer_records_db");
-    if (hasRecords === true) {
-        console.log('La tabla tiene registros')
-    } else {
-        console.log('la tabla NO tiene registros')
-    }
+    await invoke("sell_completed");
+
 })
