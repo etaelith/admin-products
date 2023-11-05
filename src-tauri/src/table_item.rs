@@ -1,6 +1,6 @@
 use rusqlite::{Connection, Result};
 
-use crate::{db_config::setup_database, item::Item};
+use crate::{db_config::connect_database, item::Item};
 
 pub fn save_item(
     conn: &Connection,
@@ -18,7 +18,7 @@ pub fn save_item(
 }
 
 pub fn update_prices(conn: &Connection, percent: f64) -> Result<(), rusqlite::Error> {
-    let mut stmt = conn
+    let mut stmt: rusqlite::Statement<'_> = conn
         .prepare("SELECT id, price FROM items")
         .map_err(|_e| rusqlite::Error::QueryReturnedNoRows)?;
 
@@ -43,7 +43,7 @@ pub fn update_prices(conn: &Connection, percent: f64) -> Result<(), rusqlite::Er
 }
 
 pub fn get_items() -> Result<Vec<Item>, String> {
-    let conn = setup_database().map_err(|e| e.to_string())?;
+    let conn = connect_database().map_err(|e| e.to_string())?;
     let mut stmt = conn
         .prepare(
             "SELECT id, codebar, name, stock, price, category, created_at, updated_at FROM items",

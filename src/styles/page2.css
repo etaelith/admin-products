@@ -16,6 +16,16 @@
 }
 
 /* Sell Items */
+.agree-container {
+    display: grid;
+    grid-template-columns: 1fr 0.25fr;
+    margin: 1em auto;
+    border-radius: 50px;
+    padding: 1em;
+    border: 1px solid var(--border-color);
+
+}
+
 .customer-sell {
     display: flex;
     justify-content: space-between;
@@ -31,10 +41,42 @@
     width: 80%;
 }
 
-.customer-container {
+.boleta-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 80%;
+    gap: 1em;
+    border-radius: 25px;
+    border: 1px solid var(--border-color);
+    margin: 1em;
+}
+
+.boleta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: 1em;
+    padding: 1em;
+}
+
+.flex-boletas {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+}
+
+.flex-boleta-individual {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1em;
+}
+
+#next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .customer-total {
@@ -44,6 +86,65 @@
 }
 
 .customer-button {
-    width: 150px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
+}
+
+/* TABLE */
+/* Title Table */
+.title-table {
+    display: flex;
+    gap: 1em;
+}
+
+.desactivar-div {
+    background-color: gray;
+    opacity: 0.5;
+    /* Cambia la opacidad según lo necesites para ajustar el nivel de deshabilitado */
+    border-radius: 10px;
+    content: "Block";
+    /* Agrega el valor que desees para el radio de borde */
+}
+
+/* Si deseas desactivar elementos internos dentro del div, puedes utilizar esta regla */
+.desactivar-div * {
+    pointer-events: none;
+    /* Esto desactivará los eventos en elementos internos */
+}
+
+.boleta-div {
+    display: flex;
+    justify-content: center;
+}
+
+.select-boleta {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 2em;
+    margin: 0 auto;
+    width: auto;
+    gap: 4em;
+}
+
+/* Estilo de los radio buttons ocultos */
+input[type="radio"] {
+    display: none;
+}
+
+/* Estilo de las etiquetas que simulan los botones */
+.selection-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #db2b2b;
+    border: 1px solid #999;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Estilo de las etiquetas cuando están seleccionadas */
+input[type="radio"]:checked+.selection-label {
+    background-color: rgba(100, 153, 51, 0.76);
+    color: #fff;
 }
