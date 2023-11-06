@@ -1,4 +1,9 @@
 :root {
+  /* Variables */
+  --border-radius: 25px;
+  --border-color: #396cd8;
+
+  /* Global styles */
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -6,20 +11,14 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
   color: #0f0f0f;
   background-color: #f6f6f6;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  --border-radius: 25px;
-  --border-color: #396cd8;
 }
-
-bo
 
 /* Container */
 .dashboard {
@@ -32,7 +31,7 @@ bo
   flex-direction: column;
   align-items: center;
   border: 2px solid #396cd8;
-  border-radius: var(--border-radius, 25px);
+  border-radius: var(--border-radius);
 }
 
 .list-menu {
@@ -43,14 +42,15 @@ bo
   margin-bottom: 2em;
 }
 
-
-
 .active {
   color: green;
 }
 
 /* Show (RIGHT) */
 .ventana {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
   border: 2px solid var(--border-color);
   border-radius: var(--border-radius);
   height: 100%;
@@ -61,7 +61,8 @@ bo
 .tools {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 1em;
+  width: 95%;
+  margin: 0 auto;
   padding: 1em;
   border: 3px dashed red;
   border-radius: 50px;
@@ -74,7 +75,6 @@ bo
 
 #inflacion,
 #discount {
-
   -moz-appearance: textfield;
   appearance: textfield;
 }
@@ -96,7 +96,7 @@ bo
 .create-container {
   display: grid;
   grid-template-columns: 1fr 0.25fr;
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
   border-radius: 50px;
   padding: 1em;
@@ -104,7 +104,6 @@ bo
 }
 
 /* Form Agree Item */
-
 form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -126,27 +125,24 @@ label {
 }
 
 #save:hover {
-  background-color: rgb(7, 199, 7, 0.3);
+  background-color: rgba(7, 199, 7, 0.3);
 }
 
-/* scanner button */
+/* Scanner button */
 .scanner-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
   background-color: green;
-  border-radius: 25px;
+  border-radius: var(--border-radius);
   cursor: pointer;
 }
 
 .scanner-button>h1 {
-
   text-align: center;
 }
 
-/* Filter Table*/
+/* Filter Table */
 .filter {
   display: flex;
   justify-content: space-around;
@@ -215,7 +211,6 @@ input[type="search"] {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
-
 button,
 textarea {
   border-radius: 8px;
@@ -232,7 +227,6 @@ textarea {
 
 button {
   cursor: pointer;
-
 }
 
 button:hover {
@@ -271,11 +265,11 @@ button:focus {
   .input-form,
   button {
     color: #ffffff;
-    background-color: #0f0f0f98;
+    background-color: rgba(0, 0, 0, 0.98);
   }
 
   button:active {
-    background-color: #0f0f0f69;
+    background-color: rgba(0, 0, 0, 0.69);
   }
 }
 

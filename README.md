@@ -15,3 +15,5 @@ This template should help get you started developing with Tauri in vanilla HTML,
 - [Tauri](https://tauri.app/)
 
 - [rusqlite](https://docs.rs/rusqlite/latest/rusqlite/)
+
+- [ApiDolar] (https://dolarapi.com/docs/)

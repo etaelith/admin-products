@@ -50,7 +50,7 @@ async function deleteItem() {
     const result = await dialog.confirm('Estas seguro que deseas borrar este item?', 'Borrar item')
     if (result) {
         invoke('delete_item_db', {
-            id: id.textContent
+            id: Number(id.textContent)
         })
         getItems()
     } else {
@@ -80,7 +80,6 @@ document.querySelector('form').addEventListener('submit', async function (event)
     var categoryValue = this.elements['categories'].value;
     var stockInt = parseInt(stockValue, 10);
     var priceInt = parseInt(priceValue, 10);
-    console.log(barcodeValue, nameValue, stockInt, priceInt, categoryValue)
 
     await invoke("save_to_database", {
         codebar: barcodeValue,
@@ -88,8 +87,16 @@ document.querySelector('form').addEventListener('submit', async function (event)
         stock: stockInt,
         price: priceInt,
         category: categoryValue
+    }).then((result) => {
+        if (result.success === true) {
+            console.log('success: ', result.success)
+            console.log('Datos guardados en la base de datos local');
+        } else {
+            console.log('Error: ', result.error_message)
+            dialog.message(result.error_message, 'Error')
+        }
     })
-    console.log('Datos guardados en la base de datos local');
+
     getItems()
 });
 //reload list

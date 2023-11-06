@@ -2,7 +2,6 @@ const { invoke } = window.__TAURI__.tauri;
 const dialog = window.__TAURI__.dialog;
 
 // lock & unlock
-const nextButton = document.getElementById("next");
 const radioButtons = document.querySelectorAll('input[type="radio"]');
 const dataBoletas = document.querySelectorAll('[data-boletas]');
 const div1 = document.querySelector('[data-label="1"]');
@@ -31,14 +30,9 @@ const totalShow = document.getElementById("totalAmount")
 /* Sell */
 const buttonSell = document.getElementById("sell")
 //add events
-nextButton.addEventListener('click', function () {
-    next()
-})
+
 const scanButton = document.getElementById('scanner')
 
-scanButton.addEventListener('click', function () {
-    back()
-})
 
 radioButtons.forEach(radioButton => {
     radioButton.addEventListener('change', function () {
@@ -60,7 +54,6 @@ radioButtons.forEach(radioButton => {
 // Select boleta & Create boleta
 buttonCreate.addEventListener('click', function () {
     invoke("command_uno", {
-
         categoryType: billingType.value,
         dni: Number(inputDNI.value)
     }).then((result) => {
@@ -68,6 +61,7 @@ buttonCreate.addEventListener('click', function () {
             console.log('Last insert row: ', result)
             tableIdPut.innerText = '';
             tableIdPut.innerText = result;
+            next()
         } else {
             console.log('No se inserto ninguna fila')
         }
@@ -75,15 +69,25 @@ buttonCreate.addEventListener('click', function () {
         console.error('Error en la funcion rust: ', error)
     })
 })
-
-searchButton.addEventListener('click', function () {
-    console.log(valueIdTable.value)
-    invoke("command_uno", {
-        uno: '1',
-        categoryType: billingType.value,
-        idRow: valueIdTable.value
+/* Buscar Boleta */
+searchButton.addEventListener('click', async function () {
+    await invoke("search_boleta", {
+        idRow: Number(valueIdTable.value)
+    }).then((result) => {
+        if (result.success === true) {
+            tableIdPut.innerText = valueIdTable.value;
+            next()
+        } else {
+            dialog.message(result.error_message, "Error al buscar")
+            valueIdTable.value = '';
+            valueIdTable.focus()
+        }
+    }).catch((error) => {
+        dialog.message(error, "Error al buscar")
+        console.log(error)
     })
 })
+/* Agregar Producto a la boleta */
 buttonAgree.addEventListener("click", async function () {
     let codebar_clean = idProduct.value.trim();
     if (codebar_clean !== "") {
@@ -117,21 +121,57 @@ buttonCalculate.addEventListener("click", function () {
     });
     totalShow.innerText = `$ ${totalArsSum}`
 })
-/* Sell Total */
-buttonSell.addEventListener('click', async function () {
-    const result = await dialog.confirm("Estas seguro que deseas", "Confirmar la venta?", "Confirmar Venta")
+/* Cancelar Venta */
+cancelButton.addEventListener('click', async function () {
+    if (tableIdPut.textContent === 'NN') return
+    const result = await dialog.confirm("Estas seguro que deseas", "Cancelar Venta")
     if (result) {
-        invoke("command_tres", {
+        invoke('cancel_selldelete', {
             buyerId: Number(tableIdPut.innerText)
+        }).then(() => {
+            const table = document.querySelector("table tbody")
+            table.innerHTML = '';
+            tableIdPut.innerText = 'NN';
+            inputDNI.value = '';
+            idProduct.value = '';
+            amountProduct.value = '';
+            back()
         })
-
     } else {
-        console.log('Nope')
+        console.log('nou')
     }
 })
+
+/* Sell Total */
+buttonSell.addEventListener('click', async function () {
+    const table = document.querySelector("table tbody")
+    if (tableIdPut.textContent === 'NN') return
+    if (table.childElementCount > 0) {
+        const result = await dialog.confirm("Estas seguro que deseas", "Confirmar la venta?", "Confirmar Venta")
+        if (result) {
+            invoke("command_tres", {
+                buyerId: Number(tableIdPut.innerText)
+            }).then((result) => {
+                if (result.success === true) {
+                    const table = document.querySelector("table tbody")
+                    table.innerHTML = ''
+                    tableIdPut.innerText = 'NN';
+                    back()
+                } else {
+                    dialog.message(error, "Error transaction")
+                }
+            }).catch((error) => {
+                dialog.message(error, "Error consulta")
+
+            })
+        } else {
+            console.log('Nope')
+        }
+    }
+})
+
 function showItems(item) {
     const table = document.querySelector("table tbody")
-
     const row = table.insertRow();
     const idCell = row.insertCell(0);
     const idProductCell = row.insertCell(1);
@@ -195,21 +235,6 @@ async function fitPrice(percent) {
 
 }
 
-cancelButton.addEventListener('click', async function () {
-    const result = await dialog.confirm("Estas seguro que deseas", "Cancelar Venta")
-    if (result) {
-
-        invoke('cancel_selldelete', {
-            buyerId: Number(tableIdPut.innerText)
-        }).then(() => {
-            const table = document.querySelector("table tbody")
-            table.innerHTML = ''
-            back()
-        })
-    } else {
-        console.log('nou')
-    }
-})
 
 function next() {
     console.log('next')

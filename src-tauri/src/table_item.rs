@@ -1,6 +1,9 @@
 use rusqlite::{Connection, Result};
 
-use crate::{db_config::connect_database, item::Item};
+use crate::{
+    db_config::connect_database,
+    item::{Item, ResponseStatus},
+};
 
 pub fn save_item(
     conn: &Connection,
@@ -9,12 +12,30 @@ pub fn save_item(
     stock: i64,
     price: f64,
     category: &str,
-) -> Result<()> {
-    conn.execute(
+) -> ResponseStatus {
+    if let Err(err) = conn.execute(
         "INSERT INTO items (codebar, name, stock, price, category, created_at, updated_at) VALUES (?1, ?2, ?3, ?4, ?5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)",
         &[codebar, name, &stock.to_string(), &price.to_string(), category],
-    )?;
-    Ok(())
+    ) {
+        if let rusqlite::Error::SqliteFailure(err_info, _) = &err {
+            if err_info.code == rusqlite::ErrorCode::ConstraintViolation {
+                return ResponseStatus {
+                    success: false,
+                    error_message: Some("El código de barras ya existe en la base de datos".to_string()),
+                };
+            }
+        }
+
+        return ResponseStatus {
+            success: false,
+            error_message: Some(format!("Error al guardar en la base de datos: {:?}", err)),
+        };
+    }
+
+    ResponseStatus {
+        success: true,
+        error_message: None,
+    }
 }
 
 pub fn update_prices(conn: &Connection, percent: f64) -> Result<(), rusqlite::Error> {

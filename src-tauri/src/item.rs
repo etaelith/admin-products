@@ -54,8 +54,9 @@ pub struct ItemForSell {
     pub usd_value: i64,
     pub total: i64,
 }
-#[derive(Debug, Serialize)]
-pub struct ResponseDelete {
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ResponseStatus {
     pub success: bool,
     pub error_message: Option<String>,
 }
