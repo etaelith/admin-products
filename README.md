@@ -16,4 +16,6 @@ This template should help get you started developing with Tauri in vanilla HTML,
 
 - [rusqlite](https://docs.rs/rusqlite/latest/rusqlite/)
 
-- [ApiDolar] (https://dolarapi.com/docs/)
+- [ApiDolar](https://dolarapi.com/docs/)
+
+- [1Password](https://github.com/1Password/1password-teams-open-source)
