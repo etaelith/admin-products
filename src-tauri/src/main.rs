@@ -9,12 +9,12 @@ mod table_item;
 mod table_presell;
 
 use db_config::{connect_database, setup_database};
-use item::{ItemForSell, ResponseStatus};
+use item::{BuyerRecord, ItemForSell, ResponseStatus, ShowItemForSell};
 use rusqlite::Result;
-use table_buyer::{create_buyer_id, get_buyer_id};
+use table_buyer::{create_buyer_id, get_buyer_id, show_buyers};
 use table_commit::{cancel_sell, commit_sell};
 use table_item::{delete_item, get_items, save_item, update_prices};
-use table_presell::{create_item_for_sell, delete_item_sell};
+use table_presell::{create_item_for_sell, delete_item_sell, show_items_presell};
 use tauri::InvokeError;
 
 /* Comandos TABLE items */
@@ -47,6 +47,14 @@ fn save_to_database(
 #[tauri::command]
 fn get_items_db() -> Result<Vec<item::Item>, String> {
     get_items()
+}
+#[tauri::command]
+fn get_items_sell() -> Result<Vec<ShowItemForSell>, String> {
+    show_items_presell()
+}
+#[tauri::command]
+fn get_buyers() -> Result<Vec<BuyerRecord>, String> {
+    show_buyers()
 }
 #[tauri::command]
 fn update_prices_db(percent: u8) -> Result<(), String> {
@@ -138,6 +146,8 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             save_to_database,
             get_items_db,
+            get_items_sell,
+            get_buyers,
             delete_item_db,
             update_prices_db,
             command_uno,

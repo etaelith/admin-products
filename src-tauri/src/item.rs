@@ -56,6 +56,16 @@ pub struct ItemForSell {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct ShowItemForSell {
+    pub id: i64,
+    pub codebar: i64,
+    pub amount: i64,
+    pub price: i64,
+    pub usd_value: i64,
+    pub total: i64,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ResponseStatus {
     pub success: bool,
     pub error_message: Option<String>,

@@ -2,7 +2,7 @@ use rusqlite::Connection;
 
 use crate::{
     db_config::connect_database,
-    item::{ItemForSell, ResponseStatus},
+    item::{ItemForSell, ResponseStatus, ShowItemForSell},
 };
 
 pub fn create_item_for_sell(
@@ -105,4 +105,27 @@ pub fn delete_item_sell(buyer_id: i64, codebar: i64) -> Result<ResponseStatus, r
         }
         Err(conn_err) => Err(conn_err),
     }
+}
+pub fn show_items_presell() -> Result<Vec<ShowItemForSell>, String> {
+    let conn = connect_database().map_err(|e| e.to_string())?;
+    let mut stmt = conn
+        .prepare("SELECT id, codebar, price, usd_value, amount, total FROM products_sell")
+        .map_err(|e| e.to_string())?;
+
+    let mapped_rows = stmt
+        .query_map([], |row| {
+            Ok(ShowItemForSell {
+                id: row.get(0)?,
+                codebar: row.get(1)?,
+                price: row.get(2)?,
+                usd_value: row.get(3)?,
+                amount: row.get(4)?,
+                total: row.get(5)?,
+            })
+        })
+        .map_err(|e| e.to_string())?;
+
+    let items: Result<Vec<ShowItemForSell>, _> = mapped_rows.collect();
+
+    items.map_err(|e| e.to_string())
 }

@@ -19,3 +19,14 @@
     justify-content: space-around;
     align-items: center;
 }
+
+.facturacion_title,
+.ventas_title {
+    display: flex;
+    justify-content: space-between;
+}
+
+#reload_buyers,
+#reload_sells {
+    background-color: transparent;
+}

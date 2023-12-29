@@ -11,7 +11,7 @@
 
 <body>
     <!-- Menú de la izquierda -->
-    <div class="menu" style="float: left; width: 20%;">
+    <div class="menu">
         <h3>Menú</h3>
         <nav class="list-menu">
             <a class="linkActive" href="index.html">Control General</a>
@@ -20,7 +20,7 @@
         </nav>
     </div>
     <!-- Ventana de la derecha -->
-    <div class="ventana" style="float: right; width: 75%;">
+    <div class="ventana">
         <h1>Control de Ventas</h1>
         <div class="stats">
             <ul>
@@ -56,69 +56,41 @@
             </ul>
         </div>
         <!-- Sales -->
-        <h2>Sales Products</h2>
+        <div class="ventas_title">
+
+            <h2>Ventas Individuales</h2>
+            <button id="reload_sells"> <img src="./assets/reload.svg" alt="">
+            </button>
+        </div>
         <table>
             <thead>
                 <th>ID</th>
                 <th>ID Product</th>
-                <th>Product Name</th>
                 <th>Amount</th>
                 <th>Price ARS</th>
                 <th>USD Value</th>
                 <th>Total ARS</th>
             </thead>
-            <tbody>
+            <tbody id="tbody_items">
                 <tr class="row-item">
-                    <td>1</td>
-                    <td>23</td>
-                    <td>Product 1</td>
-                    <td>5</td>
-                    <td>$100.00</td>
-                    <td>$10.00</td>
-                    <td>$500.00</td>
-                </tr>
-                <tr class="row-item">
-                    <td>2</td>
-                    <td>332</td>
-                    <td>Product 2</td>
-                    <td>3</td>
-                    <td>$15.00</td>
-                    <td>$1.50</td>
-                    <td>$45.00</td>
-                </tr>
-                <tr class="row-item">
-                    <td>3</td>
-                    <td>21</td>
-                    <td>Product 3</td>
-                    <td>2</td>
-                    <td>$50.00</td>
-                    <td>$5.00</td>
-                    <td>$100.00</td>
-                </tr>
-                <tr class="row-item">
-                    <td>4</td>
-                    <td>7234</td>
-                    <td>Product 4</td>
-                    <td>4</td>
-                    <td>$25.00</td>
-                    <td>$2.50</td>
-                    <td>$100.00</td>
-                </tr>
-                <tr class="row-item">
-                    <td>5</td>
-                    <td>9120</td>
-                    <td>Product 5</td>
-                    <td>1</td>
-                    <td>$75.00</td>
-                    <td>$7.50</td>
-                    <td>$75.00</td>
-                </tr>
+                    <td>Usar Boton Reload</td>
+                    <td>Null</td>
 
+                    <td>Null</td>
+                    <td>Null</td>
+                    <td>Null</td>
+                    <td>Null</td>
+                </tr>
                 <!-- Agrega más filas de datos aquí -->
             </tbody>
         </table>
         <!-- invoicing -->
-        <h2>Invoicing</h2>
+        <div class="facturacion_title">
+            <h2>Facturacion</h2>
+            <button id="reload_buyers">
+                <img src="./assets/reload.svg" alt="">
+            </button>
+        </div>
         <table>
             <thead>
                 <th>ID</th>
@@ -127,7 +99,7 @@
                 <th>Price USD</th>
                 <th>Total ARS</th>
             </thead>
-            <tbody>
+            <tbody id="tbody_buyers">
                 <tr class="row-item">
                     <td>1</td>
                     <td>A</td>
@@ -169,6 +141,7 @@
         </table>
     </div>
     <script src="./scripts/menuscript.js"></script>
+    <script src="./scripts/showsells.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,9 @@
 use rusqlite::{params, Connection, Result};
 
-use crate::{db_config::connect_database, item::ResponseStatus};
+use crate::{
+    db_config::connect_database,
+    item::{BuyerRecord, ResponseStatus},
+};
 
 pub fn get_buyer_id(id_row: i64) -> Result<ResponseStatus, rusqlite::Error> {
     let conn = connect_database().expect("Failed to open the database");
@@ -52,4 +55,27 @@ pub fn create_buyer_id(
     tx.commit()?;
 
     Ok(last_insert_rowid)
+}
+
+pub fn show_buyers() -> Result<Vec<BuyerRecord>, String> {
+    let conn = connect_database().map_err(|e| e.to_string())?;
+    let mut stmt = conn
+        .prepare("SELECT id, category_type, dni, total, total_usd FROM buyer")
+        .map_err(|e| e.to_string())?;
+
+    let mapped_rows = stmt
+        .query_map([], |row| {
+            Ok(BuyerRecord {
+                id: row.get(0)?,
+                category_type: row.get(1)?,
+                dni: row.get(2)?,
+                total: row.get(3)?,
+                total_usd: row.get(4)?,
+            })
+        })
+        .map_err(|e| e.to_string())?;
+
+    let buyers: Result<Vec<BuyerRecord>, _> = mapped_rows.collect();
+
+    buyers.map_err(|e| e.to_string())
 }
